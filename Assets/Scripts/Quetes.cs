@@ -7,7 +7,6 @@ public class Quetes : MonoBehaviour
 
     //[SerializeField] List<GameObject> QuetesList;
     private int currentQueteNumber = 0;
-    private Quetes quetesContainer;
     public List<GameObject> QuetesList;
 
 
@@ -18,37 +17,47 @@ public class Quetes : MonoBehaviour
 
     void Start()
     {
+        //PlayerPrefs.SetInt("Quete", 0);
+
+        StartSceneQuete();
+    }
+
+    public void StartSceneQuete()
+    {
         foreach (Quetes quete in Resources.FindObjectsOfTypeAll(typeof(Quetes)) as Quetes[])
         {
             QuetesList.Add(quete.gameObject);
         }
 
-        PlayerPrefs.SetInt("Quete", 0);
-
         currentQueteNumber = PlayerPrefs.GetInt("Quete", currentQueteNumber);
         SearchQuete();
     }
 
-    private void SearchQuete()
+    public void SearchQuete()
     {
-        Debug.Log("currentQueteNumber " + currentQueteNumber);
-        Debug.Log("pref " + PlayerPrefs.GetInt("Quete"));
+
+        Debug.Log("search");
+        Debug.Log(currentQueteNumber);
         for (int i = 0; i< QuetesList.Count; i++)
         {
             if (currentQueteNumber.ToString() == QuetesList[i].transform.GetChild(0).name)
             {
                QuetesList[i].transform.GetChild(0).gameObject.SetActive(true);
+               return;
             }
         }
     }
 
     public void QueteButton()
     { 
-        transform.GetChild(0).gameObject.SetActive(false);
-        currentQueteNumber += 1;
+        currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
+        Debug.Log("currentQueteNumber " + currentQueteNumber);
+
         PlayerPrefs.SetInt("Quete", currentQueteNumber);
 
         SearchQuete();
+        transform.GetChild(0).gameObject.SetActive(false);
+        
     }
 
     void Update()

@@ -15,6 +15,8 @@ public class MontreScript : MonoBehaviour
     [SerializeField] Text DateText;
     [SerializeField] GameObject MontreScreen;
 
+    private Quetes quetes;
+
     private bool isOpen;
     private PlayerController playerController;
 
@@ -103,13 +105,14 @@ public class MontreScript : MonoBehaviour
         {
             PlayerPrefs.SetString("CurrentDate", DateText.text);
             SceneManager.LoadScene(DateText.text);
+            //quetes.StartSceneQuete();
         }
     }
 
     void Start()
     {
 
-
+        quetes = FindObjectOfType<Quetes>();
         DateText.text = SceneManager.GetActiveScene().name;
 
         isOpen = false;
