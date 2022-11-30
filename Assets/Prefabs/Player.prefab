@@ -50,7 +50,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   speedMax: 10
   acceleration: 0.1
-  decceleration: 0.1
+  decceleration: 0.5
   smoothRotation: 0.1
   canMove: 0
 --- !u!54 &2472381648517483840

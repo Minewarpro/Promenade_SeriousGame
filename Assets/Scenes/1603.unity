@@ -1660,7 +1660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 136, y: -6}
+  m_AnchoredPosition: {x: 136, y: -10}
   m_SizeDelta: {x: -269.8, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &621506779
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 40
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -3340,6 +3340,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1738359226715723407, guid: 3cfe508710bf6ad4fb6f8acb28353eaa, type: 3}
+      propertyPath: decceleration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738359226715723407, guid: 3cfe508710bf6ad4fb6f8acb28353eaa, type: 3}
       propertyPath: smoothRotation
       value: 0
       objectReference: {fileID: 0}
@@ -3662,7 +3666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3840,7 +3844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
