@@ -33,8 +33,8 @@ public class MontreScript : MonoBehaviour
         if (!isOpen)
         {
             montre.transform.DOLocalRotate(new Vector3(0, 360, 0), 1f, RotateMode.LocalAxisAdd);
-            montre.transform.DOScale(new Vector3(3.3f, 3.3f, 3.3f), 1f);
-            montre.transform.DOLocalMove(new Vector3(-595, -610, -135), 1f).OnComplete(() => MontreScreen.SetActive(true));
+            montre.transform.DOScale(new Vector3(2.8f, 2.8f, 2.8f), 1f);
+            montre.transform.DOLocalMove(new Vector3(-628, -440, -135), 1f).OnComplete(() => MontreScreen.SetActive(true));
             mAnimator.SetTrigger("Open");
 
             isOpen = true;
@@ -44,8 +44,8 @@ public class MontreScript : MonoBehaviour
 
             if (isNotifActive)
             {
-                transform.GetChild(1).DOKill();
-                transform.GetChild(1).localScale = initNotifCanvasScale;
+                transform.GetChild(4).DOKill();
+                transform.GetChild(4).localScale = initNotifCanvasScale;
                 NotifCanvas.gameObject.SetActive(false);
                 isNotifActive = false;
             }
@@ -128,11 +128,11 @@ public class MontreScript : MonoBehaviour
         DatesList.Sort();
         DatesList.Reverse();
 
-        initNotifCanvasScale = transform.GetChild(1).localScale;
+        initNotifCanvasScale = transform.GetChild(4).localScale;
         isNotifActive = true;
 
         NotifCanvas.gameObject.SetActive(true);
-        transform.GetChild(1).DOScale(NotifCanvas.transform.localScale * 1.01f, 0.3f)
+        transform.GetChild(4).DOScale(NotifCanvas.transform.localScale * 1.01f, 0.3f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.OutCirc);
     }
@@ -160,7 +160,7 @@ public class MontreScript : MonoBehaviour
     void Start()
     {
 
-        NotifCanvas = transform.GetChild(1).GetChild(1);
+        NotifCanvas = transform.GetChild(4).GetChild(1);
 
         quetes = FindObjectOfType<Quetes>();
         DateText.text = SceneManager.GetActiveScene().name;

@@ -26,6 +26,13 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("Engrenage", 0);
         PlayerPrefs.SetInt("Quete", 0);
 
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+            QualitySettings.shadowDistance = 200;
+        }
+
     }
 
 

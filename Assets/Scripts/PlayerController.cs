@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         canMove = true;
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            QualitySettings.shadowDistance = 50;
+        }
     }
 
 
