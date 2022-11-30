@@ -15,11 +15,20 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        currentDate = PlayerPrefs.GetString("CurrentDate", currentDate);
         EntireOptionButtonImage = EntireOptionButton.GetComponent<Image>();
     }
 
-    
+    private void Start()
+    {
+        PlayerPrefs.SetString("CurrentDate", "2022");
+        currentDate = PlayerPrefs.GetString("CurrentDate", currentDate);
+
+        PlayerPrefs.SetInt("Engrenage", 0);
+        PlayerPrefs.SetInt("Quete", 0);
+
+    }
+
+
     public void OptionButtonSript()
     {
         fillAmount = EntireOptionButton.GetComponent<Image>().fillAmount;

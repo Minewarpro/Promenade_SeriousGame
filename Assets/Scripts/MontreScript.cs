@@ -11,11 +11,12 @@ public class MontreScript : MonoBehaviour
     private Animator mAnimator;
     [SerializeField] GameObject montre;
     [SerializeField] GameObject joystick;
-    [SerializeField] List<int> DatesList = new List<int>();
+    [SerializeField] public List<int> DatesList = new List<int>();
     [SerializeField] Text DateText;
     [SerializeField] GameObject MontreScreen;
 
     private Quetes quetes;
+    private Engrenage engrenage;
 
     private bool isOpen;
     private PlayerController playerController;
@@ -136,6 +137,25 @@ public class MontreScript : MonoBehaviour
             .SetEase(Ease.OutCirc);
     }
 
+    public void StartAddDate()
+    {
+        if (PlayerPrefs.GetInt("Engrenage") >= 1 )
+        {
+            DatesList.Add(1603);
+            DatesList.Sort();
+            DatesList.Reverse();
+
+            if (PlayerPrefs.GetInt("Engrenage") >= 2)
+            {
+                DatesList.Add(1783);
+                DatesList.Sort();
+                DatesList.Reverse();
+            }
+        }
+
+        engrenage.DestroyCheck();
+    }
+
 
     void Start()
     {
@@ -148,9 +168,13 @@ public class MontreScript : MonoBehaviour
         isOpen = false;
         mAnimator = montre.GetComponent<Animator>();
         playerController = FindObjectOfType<PlayerController>();
+        engrenage = FindObjectOfType<Engrenage>();
 
         initPosition = montre.transform.localPosition;
         initScale = montre.transform.localScale;
+
+        StartAddDate();
+
     }
   
     void Update()

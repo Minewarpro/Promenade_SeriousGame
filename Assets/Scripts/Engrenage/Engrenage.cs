@@ -44,6 +44,20 @@ public class Engrenage : MonoBehaviour
         transform.DOScale(transform.localScale * 0f, 0.5f).SetEase(Ease.InBack).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
     }
 
+    public void DestroyCheck()
+    {
+        
+        for (int i = 0; i < montreScript.DatesList.Count; i++)
+        {
+            Debug.Log("Date " + Date);
+            Debug.Log("Date Montre " + montreScript.DatesList[i]);
+            if (Date == montreScript.DatesList[i])
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
