@@ -52,6 +52,7 @@ MonoBehaviour:
   acceleration: 0.1
   decceleration: 0.1
   smoothRotation: 0.1
+  canMove: 0
 --- !u!54 &2472381648517483840
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66,7 +67,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &8828700289871169569
 CapsuleCollider:

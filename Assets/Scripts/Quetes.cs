@@ -12,7 +12,7 @@ public class Quetes : MonoBehaviour
 
     private void Awake()
     {
-       // PlayerPrefs.SetInt("Quete", 0);
+       //PlayerPrefs.SetInt("Quete", 0);
     }
 
     void Start()
@@ -35,8 +35,6 @@ public class Quetes : MonoBehaviour
 
     public void SearchQuete()
     {
-
-        Debug.Log("search");
         Debug.Log(currentQueteNumber);
         for (int i = 0; i< QuetesList.Count; i++)
         {
@@ -51,7 +49,6 @@ public class Quetes : MonoBehaviour
     public void QueteButton()
     { 
         currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
-        Debug.Log("currentQueteNumber " + currentQueteNumber);
 
         PlayerPrefs.SetInt("Quete", currentQueteNumber);
 

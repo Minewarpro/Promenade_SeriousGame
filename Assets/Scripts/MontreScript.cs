@@ -11,7 +11,7 @@ public class MontreScript : MonoBehaviour
     private Animator mAnimator;
     [SerializeField] GameObject montre;
     [SerializeField] GameObject joystick;
-    [SerializeField] List<string> DatesList = new List<string>();
+    [SerializeField] List<int> DatesList = new List<int>();
     [SerializeField] Text DateText;
     [SerializeField] GameObject MontreScreen;
 
@@ -19,9 +19,13 @@ public class MontreScript : MonoBehaviour
 
     private bool isOpen;
     private PlayerController playerController;
+    private Transform NotifCanvas;
 
     private Vector3 initPosition;
     private Vector3 initScale;
+    private Vector3 initNotifCanvasScale;
+    private bool isNotifActive = false;
+
 
     public void OnClickButton()
     {
@@ -36,6 +40,14 @@ public class MontreScript : MonoBehaviour
             playerController.canMove = false;
             joystick.transform.GetChild(0).GetComponent<Image>().raycastTarget = false;
             joystick.GetComponent<Image>().raycastTarget = false;
+
+            if (isNotifActive)
+            {
+                transform.GetChild(1).DOKill();
+                transform.GetChild(1).localScale = initNotifCanvasScale;
+                NotifCanvas.gameObject.SetActive(false);
+                isNotifActive = false;
+            }
         }
         
     }
@@ -61,16 +73,16 @@ public class MontreScript : MonoBehaviour
     {
         for (int i=0; i<DatesList.Count; i++)
         {
-            if (DatesList[i] == DateText.text)
+            if (DatesList[i].ToString() == DateText.text)
             {
                 if (i+1 != DatesList.Count)
                 {
-                    DateText.text = DatesList[i+1];
+                    DateText.text = DatesList[i+1].ToString();
                     return;
                 }
                 else
                 {
-                    DateText.text = DatesList[0];
+                    DateText.text = DatesList[0].ToString();
                     return;
                 }
                 
@@ -82,16 +94,16 @@ public class MontreScript : MonoBehaviour
     {
         for (int i=0; i<DatesList.Count; i++)
         {
-            if (DatesList[i] == DateText.text)
+            if (DatesList[i].ToString() == DateText.text)
             {
                 if (i != 0)
                 {
-                    DateText.text = DatesList[i-1];
+                    DateText.text = DatesList[i-1].ToString();
                     return;
                 }
                 else
                 {
-                    DateText.text = DatesList[DatesList.Count - 1];
+                    DateText.text = DatesList[DatesList.Count - 1].ToString();
                     return;
                 }
                 
@@ -109,8 +121,26 @@ public class MontreScript : MonoBehaviour
         }
     }
 
+    public void Notif()
+    {
+        DatesList.Add(Engrenage.EngrenageDate);
+        DatesList.Sort();
+        DatesList.Reverse();
+
+        initNotifCanvasScale = transform.GetChild(1).localScale;
+        isNotifActive = true;
+
+        NotifCanvas.gameObject.SetActive(true);
+        transform.GetChild(1).DOScale(NotifCanvas.transform.localScale * 1.01f, 0.3f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.OutCirc);
+    }
+
+
     void Start()
     {
+
+        NotifCanvas = transform.GetChild(1).GetChild(1);
 
         quetes = FindObjectOfType<Quetes>();
         DateText.text = SceneManager.GetActiveScene().name;
