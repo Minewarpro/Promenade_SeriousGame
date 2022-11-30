@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8307633222584797423}
   - component: {fileID: 3655441182704834346}
   m_Layer: 0
-  m_Name: PNG_Quete
+  m_Name: PNJ_Quete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuetesList: []
+  newObjectif: 
 --- !u!1 &5290385325774852083
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3299860441124748240
 RectTransform:
   m_ObjectHideFlags: 0

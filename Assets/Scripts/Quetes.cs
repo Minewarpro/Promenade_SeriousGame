@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Quetes : MonoBehaviour
 {
-
-    //[SerializeField] List<GameObject> QuetesList;
     private int currentQueteNumber = 0;
     public List<GameObject> QuetesList;
+    QueteButton queteButton;
 
+    [SerializeField] private string newObjectif;
 
     private void Awake()
     {
-       //PlayerPrefs.SetInt("Quete", 0);
+        queteButton = FindObjectOfType<QueteButton>();
     }
 
     void Start()
     {
-        //PlayerPrefs.SetInt("Quete", 0);
-
         StartSceneQuete();
     }
 
@@ -47,11 +46,14 @@ public class Quetes : MonoBehaviour
     }
 
     public void QueteButton()
-    { 
+    {
+        PlayerPrefs.SetString("Objectif", newObjectif);
+        queteButton.ChangeObjectif();
+
+
+
         currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
-
         PlayerPrefs.SetInt("Quete", currentQueteNumber);
-
         SearchQuete();
         transform.GetChild(0).gameObject.SetActive(false);
         
