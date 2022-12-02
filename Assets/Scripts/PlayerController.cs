@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float decceleration = 0.1f;
     [SerializeField] float smoothRotation = 0.1f;
     public bool canMove;
+    private Animator mAnimator;
+
 
 
     //Cache
@@ -29,6 +31,9 @@ public class PlayerController : MonoBehaviour
         {
             QualitySettings.shadowDistance = 50;
         }
+
+        mAnimator = transform.GetChild(0).GetComponent<Animator>();
+        mAnimator.SetTrigger("Idle");
     }
 
 
