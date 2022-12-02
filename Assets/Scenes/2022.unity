@@ -3361,7 +3361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738359226715723407, guid: 3cfe508710bf6ad4fb6f8acb28353eaa, type: 3}
       propertyPath: smoothRotation
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2285648850644528944, guid: 3cfe508710bf6ad4fb6f8acb28353eaa, type: 3}
       propertyPath: m_RootOrder

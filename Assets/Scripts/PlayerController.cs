@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float smoothRotation = 0.1f;
     public bool canMove;
     private Animator mAnimator;
-
+    private bool isWalking;
 
 
     //Cache
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mAnimator = transform.GetChild(0).GetComponent<Animator>();
-        mAnimator.SetTrigger("Idle");
+        isWalking = false;
     }
 
 
@@ -44,17 +44,37 @@ public class PlayerController : MonoBehaviour
             // Vecteur de direction de déplacement
             moveDirection = new Vector3(joystick.Direction.x, 0, joystick.Direction.y).normalized;
             moveSpeed = Mathf.Lerp(moveSpeed, speedMax, acceleration) * joystick.Direction.magnitude;
+
+            float AnimSpeed = Mathf.Lerp(0, 1, joystick.Direction.magnitude);
+            mAnimator.SetFloat("AnimSpeed", AnimSpeed);
+
+            if (!isWalking)
+            {
+                mAnimator.SetTrigger("Run");
+                Debug.Log("run");
+                isWalking = true;
+            }
+
         }
         else
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 0, decceleration);
-        }
 
+            if (isWalking) 
+            {
+                mAnimator.SetTrigger("Idle");
+
+
+                isWalking = false;
+            }
+
+        }
 
 
         // Vitesse de déplacement
         moveSpeed += joystick.Direction.magnitude * acceleration * Time.deltaTime;
         moveSpeed = Mathf.Clamp(moveSpeed, 0, speedMax);
+
 
         // Orientation Joueur
         aimDirection = moveDirection;
