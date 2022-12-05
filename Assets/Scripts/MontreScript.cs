@@ -114,6 +114,9 @@ public class MontreScript : MonoBehaviour
 
     public void TravelButton()
     {
+        mAnimator.SetTrigger("TravelButton");
+
+        
         if (SceneManager.GetActiveScene().name != DateText.text)
         {
             PlayerPrefs.SetString("CurrentDate", DateText.text);
