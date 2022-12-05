@@ -5,7 +5,6 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class MontreScript : MonoBehaviour
 {
     private Animator mAnimator;
@@ -26,6 +25,8 @@ public class MontreScript : MonoBehaviour
     private Vector3 initScale;
     private Vector3 initNotifCanvasScale;
     private bool isNotifActive = false;
+
+    public List<GameObject> RooulettesChiffres;
 
 
     public void OnClickButton()
@@ -79,11 +80,15 @@ public class MontreScript : MonoBehaviour
                 if (i+1 != DatesList.Count)
                 {
                     DateText.text = DatesList[i+1].ToString();
+                    int newDate = DatesList[i + 1];
+                    ChangeTime(i, newDate);
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[0].ToString();
+                    int newDate = DatesList[0];
+                    ChangeTime(i, newDate);
                     return;
                 }
                 
@@ -100,17 +105,35 @@ public class MontreScript : MonoBehaviour
                 if (i != 0)
                 {
                     DateText.text = DatesList[i-1].ToString();
+                    int newDate = DatesList[i - 1];
+                    ChangeTime(i, newDate);
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[DatesList.Count - 1].ToString();
+                    int newDate = DatesList[DatesList.Count - 1];
+                    ChangeTime(i, newDate);
                     return;
                 }
                 
             }
         }
     }
+
+    private void ChangeTime(int i, int newDate)
+    {
+        string stringDate = newDate.ToString();
+
+        for (i = 0; i<4; i++)
+        {
+            float NumberToGo = float.Parse(stringDate[i].ToString());
+
+            RooulettesChiffres[i].transform.DOLocalRotate(new Vector3 (NumberToGo * 35, 0, 0), 1);
+        }
+    }
+
+
 
     public void TravelButton()
     {
@@ -121,7 +144,6 @@ public class MontreScript : MonoBehaviour
         {
             PlayerPrefs.SetString("CurrentDate", DateText.text);
             SceneManager.LoadScene(DateText.text);
-            //quetes.StartSceneQuete();
         }
     }
 
@@ -162,6 +184,13 @@ public class MontreScript : MonoBehaviour
 
     void Start()
     {
+
+
+        for (int i = 0; i < 4; i++)
+        {
+            Debug.Log(i);
+            RooulettesChiffres.Add(transform.GetChild(4).GetChild(0).GetChild(1).GetChild(1).GetChild(i).GetChild(0).gameObject);
+        }
 
         NotifCanvas = transform.GetChild(4).GetChild(1);
 

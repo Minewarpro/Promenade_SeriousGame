@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: -3972279436062765277
     second: TravelButtonAnim
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: noir
+    second: {fileID: 2100000, guid: dc5092ad24a52c6428c6f21e35de3592, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -103,7 +108,7 @@ ModelImporter:
       name: TravelButtonAnim
       takeName: Take 001
       internalID: 0
-      firstFrame: 70
+      firstFrame: 69
       lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
