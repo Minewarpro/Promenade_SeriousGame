@@ -184,11 +184,8 @@ public class MontreScript : MonoBehaviour
 
     void Start()
     {
-
-
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log(i);
             RooulettesChiffres.Add(transform.GetChild(4).GetChild(0).GetChild(1).GetChild(1).GetChild(i).GetChild(0).gameObject);
         }
 
