@@ -17,7 +17,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: noir
-    second: {fileID: 2100000, guid: be63fa9dc39c28c4187656da3158da25, type: 2}
+    second: {fileID: -513798013838250276, guid: b29fa57d14efe1d46b8f60ede9b07bdd, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongE4
+    second: {fileID: 2100000, guid: 60d0222becf1f754b9ca42af8dfc1b84, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
