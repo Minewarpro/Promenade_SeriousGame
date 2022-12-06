@@ -80,15 +80,13 @@ public class MontreScript : MonoBehaviour
                 if (i+1 != DatesList.Count)
                 {
                     DateText.text = DatesList[i+1].ToString();
-                    int newDate = DatesList[i + 1];
-                    ChangeTime(i, newDate);
+                    ChangeTime(DateText.text);
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[0].ToString();
-                    int newDate = DatesList[0];
-                    ChangeTime(i, newDate);
+                    ChangeTime(DateText.text);
                     return;
                 }
                 
@@ -105,15 +103,13 @@ public class MontreScript : MonoBehaviour
                 if (i != 0)
                 {
                     DateText.text = DatesList[i-1].ToString();
-                    int newDate = DatesList[i - 1];
-                    ChangeTime(i, newDate);
+                    ChangeTime(DateText.text);
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[DatesList.Count - 1].ToString();
-                    int newDate = DatesList[DatesList.Count - 1];
-                    ChangeTime(i, newDate);
+                    ChangeTime(DateText.text);
                     return;
                 }
                 
@@ -121,19 +117,15 @@ public class MontreScript : MonoBehaviour
         }
     }
 
-    private void ChangeTime(int i, int newDate)
+    private void ChangeTime(string newDate)
     {
-        string stringDate = newDate.ToString();
-
-        for (i = 0; i<4; i++)
+        for (int i = 0; i<4; i++)
         {
-            float NumberToGo = float.Parse(stringDate[i].ToString());
+            float NumberToGo = float.Parse(newDate[i].ToString());
 
             RooulettesChiffres[i].transform.DOLocalRotate(new Vector3 (NumberToGo * 35, 0, 0), 1);
         }
     }
-
-
 
     public void TravelButton()
     {
@@ -193,6 +185,8 @@ public class MontreScript : MonoBehaviour
 
         quetes = FindObjectOfType<Quetes>();
         DateText.text = SceneManager.GetActiveScene().name;
+
+        ChangeTime(DateText.text);
 
         isOpen = false;
         mAnimator = montre.GetComponent<Animator>();

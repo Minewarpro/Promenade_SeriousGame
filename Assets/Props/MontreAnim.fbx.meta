@@ -18,6 +18,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: noir
     second: {fileID: 2100000, guid: be63fa9dc39c28c4187656da3158da25, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: nombers
+    second: {fileID: 2800000, guid: 3d15a90bdf24c0449aad5c3532907937, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
