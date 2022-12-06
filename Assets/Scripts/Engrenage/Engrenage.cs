@@ -49,8 +49,6 @@ public class Engrenage : MonoBehaviour
         
         for (int i = 0; i < montreScript.DatesList.Count; i++)
         {
-            Debug.Log("Date " + Date);
-            Debug.Log("Date Montre " + montreScript.DatesList[i]);
             if (Date == montreScript.DatesList[i])
             {
                 Destroy(gameObject);

@@ -30,6 +30,8 @@ public class MontreScript : MonoBehaviour
 
     public List<GameObject> RooulettesChiffres;
 
+    private int LastDate = 0;
+
 
     public void OnClickButton()
     {
@@ -83,12 +85,14 @@ public class MontreScript : MonoBehaviour
                 {
                     DateText.text = DatesList[i+1].ToString();
                     ChangeTime(DateText.text);
+                    TestNotifOnDate();
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[0].ToString();
                     ChangeTime(DateText.text);
+                    TestNotifOnDate();
                     return;
                 }
                 
@@ -106,12 +110,14 @@ public class MontreScript : MonoBehaviour
                 {
                     DateText.text = DatesList[i-1].ToString();
                     ChangeTime(DateText.text);
+                    TestNotifOnDate();
                     return;
                 }
                 else
                 {
                     DateText.text = DatesList[DatesList.Count - 1].ToString();
                     ChangeTime(DateText.text);
+                    TestNotifOnDate();
                     return;
                 }
                 
@@ -136,6 +142,8 @@ public class MontreScript : MonoBehaviour
         {
            mAnimator.SetTrigger("TravelButton");
 
+            //ParticleTravel.loop = true;
+            //ParticleTravel.Play();
             ParticleTravel.gameObject.SetActive(true);
             MontreScreen.SetActive(false);
 
@@ -164,6 +172,8 @@ public class MontreScript : MonoBehaviour
         DatesList.Sort();
         DatesList.Reverse();
 
+        LastDate = Engrenage.EngrenageDate;
+
         initNotifCanvasScale = transform.GetChild(4).localScale;
         isNotifActive = true;
 
@@ -171,6 +181,20 @@ public class MontreScript : MonoBehaviour
         transform.GetChild(4).DOScale(NotifCanvas.transform.localScale * 1.01f, 0.3f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.OutCirc);
+    }
+
+    private void TestNotifOnDate()
+    {
+        GameObject Notif = transform.GetChild(4).GetChild(0).GetChild(2).GetChild(6).gameObject;
+
+        if (DateText.text == LastDate.ToString())
+        {
+            Notif.SetActive(true);
+        }
+        else
+        {
+            Notif.SetActive(false);
+        }
     }
 
     public void StartAddDate()
@@ -192,6 +216,19 @@ public class MontreScript : MonoBehaviour
         engrenage.DestroyCheck();
     }
 
+    private void ArrivationAnim()
+    {
+        joystick.gameObject.SetActive(false);
+
+        //ParticleTravel.loop = false;
+        //ParticleTravel.transform.GetChild(0).GetComponent<ParticleSystem>().loop = false;
+
+        BlackScreen.GetComponent<CanvasGroup>().alpha = 0.9f;
+        BlackScreen.GetComponent<CanvasGroup>().DOFade(0f, 1f).OnComplete(() =>
+        {
+            joystick.gameObject.SetActive(true);
+        });
+    }
 
     void Start()
     {
@@ -216,6 +253,7 @@ public class MontreScript : MonoBehaviour
         initScale = montre.transform.localScale;
 
         StartAddDate();
+        ArrivationAnim();
 
     }
   
