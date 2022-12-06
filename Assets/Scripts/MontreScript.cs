@@ -13,6 +13,8 @@ public class MontreScript : MonoBehaviour
     [SerializeField] public List<int> DatesList = new List<int>();
     [SerializeField] Text DateText;
     [SerializeField] GameObject MontreScreen;
+    [SerializeField] ParticleSystem ParticleTravel;
+    [SerializeField] Image BlackScreen;
 
     private Quetes quetes;
     private Engrenage engrenage;
@@ -129,14 +131,31 @@ public class MontreScript : MonoBehaviour
 
     public void TravelButton()
     {
-        mAnimator.SetTrigger("TravelButton");
-
-        
+        //Animation Travel Effects
         if (SceneManager.GetActiveScene().name != DateText.text)
         {
-            PlayerPrefs.SetString("CurrentDate", DateText.text);
-            SceneManager.LoadScene(DateText.text);
+           mAnimator.SetTrigger("TravelButton");
+
+            ParticleTravel.gameObject.SetActive(true);
+            MontreScreen.SetActive(false);
+
+            BlackScreen.GetComponent<CanvasGroup>().alpha = 0.84f;
+            BlackScreen.GetComponent<CanvasGroup>().DOFade(1f, 0.5f);
+
+            montre.transform.DOScale(new Vector3(0f, 0f, 0f), 1.5f).SetEase(Ease.InCubic);
+            montre.transform.DOLocalMove(new Vector3(-593, -870, -135), 1.5f).SetEase(Ease.InCubic).OnComplete(() =>
+            {
+
+                PlayerPrefs.SetString("CurrentDate", DateText.text);
+                SceneManager.LoadScene(DateText.text);
+
+            });
+        }else
+        {
+            mAnimator.SetTrigger("FakeTravel");
+
         }
+
     }
 
     public void Notif()
