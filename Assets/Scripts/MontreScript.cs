@@ -131,7 +131,7 @@ public class MontreScript : MonoBehaviour
         {
             float NumberToGo = float.Parse(newDate[i].ToString());
 
-            RooulettesChiffres[i].transform.DOLocalRotate(new Vector3 (NumberToGo * 35, 0, 0), 1);
+            RooulettesChiffres[i].transform.DOLocalRotate(new Vector3 (NumberToGo * 36, 0, 0), 1);
         }
     }
 
