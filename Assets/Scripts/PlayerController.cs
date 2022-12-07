@@ -81,7 +81,8 @@ public class PlayerController : MonoBehaviour
         transform.forward = Vector3.Lerp(transform.forward, aimDirection, smoothRotation);
 
         // Vélocité = direction * vitesse * inclinaison du joystick
-        rb.velocity = moveDirection * moveSpeed;
+        Vector3 truc = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
+        rb.velocity = truc;
     }
 
     private void FixedUpdate()
