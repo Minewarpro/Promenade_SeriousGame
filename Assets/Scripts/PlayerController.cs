@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            QualitySettings.shadowDistance = 50;
+            QualitySettings.shadowDistance = 70;
         }
 
         mAnimator = transform.GetChild(0).GetComponent<Animator>();
