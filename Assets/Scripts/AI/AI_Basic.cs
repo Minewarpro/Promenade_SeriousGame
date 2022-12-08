@@ -6,7 +6,6 @@ public class AI_Basic : MonoBehaviour
 {
 
     [SerializeField] public float speed = 5;
-    private Vector3 _direction;
     private RaycastHit Hit;
 
     void Start()
@@ -17,7 +16,7 @@ public class AI_Basic : MonoBehaviour
     private IEnumerator RandomWalk()
     {
         transform.Rotate(Vector3.up * Random.Range(30, 180));
-        
+
         yield return new WaitForSeconds(Random.Range(0f, 8f));
         StartCoroutine(RandomWalk());
     }
