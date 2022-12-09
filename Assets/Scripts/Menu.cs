@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     private float fillAmount;
     private Image EntireOptionButtonImage;
     private string currentDate = "2022";
+    private int FirstPlay = 1;
 
     private void Awake()
     {
@@ -23,8 +24,15 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetString("CurrentDate", "2022");
         currentDate = PlayerPrefs.GetString("CurrentDate", currentDate);
 
+        FirstPlay = PlayerPrefs.GetInt("FirstPlay", FirstPlay);
+
+        // A SUPPRIMER
+        // ---------------------------
+        PlayerPrefs.SetInt("FirstPlay", 1);
         PlayerPrefs.SetInt("Engrenage", 0);
         PlayerPrefs.SetInt("Quete", 0);
+        // ---------------------------
+
 
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -32,9 +40,7 @@ public class Menu : MonoBehaviour
             Application.targetFrameRate = 60;
             QualitySettings.shadowDistance = 200;
         }
-
     }
-
 
     public void OptionButtonSript()
     {

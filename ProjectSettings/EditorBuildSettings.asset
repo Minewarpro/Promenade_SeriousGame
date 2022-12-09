@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene2022/2022.unity
     guid: a69cff812aa15d04ca9b82f4a6519ef5
   - enabled: 1
-    path: Assets/Scenes/1603.unity
-    guid: 99560ad1ecc2ffc4ca68a24f462d2d31
+    path: Assets/Scenes/Scene1603/1603.unity
+    guid: d52bd2c71f04cbf4b83fe421681a4ac2
   m_configObjects: {}

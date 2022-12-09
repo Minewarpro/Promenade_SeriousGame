@@ -10,11 +10,13 @@ public class MontreScript : MonoBehaviour
     private Animator mAnimator;
     [SerializeField] GameObject montre;
     [SerializeField] GameObject joystick;
+    [SerializeField] GameObject joystickContainer;
     [SerializeField] public List<int> DatesList = new List<int>();
     [SerializeField] Text DateText;
     [SerializeField] GameObject MontreScreen;
     [SerializeField] ParticleSystem ParticleTravel;
     [SerializeField] Image BlackScreen;
+    [SerializeField] GameObject MontreTutoContainer;
 
     private Quetes quetes;
     private Engrenage engrenage;
@@ -37,6 +39,11 @@ public class MontreScript : MonoBehaviour
     {
         if (!isOpen)
         {
+            if (PlayerPrefs.GetInt("FirstPlay") == 1)
+            {
+                MontreTutoContainer.SetActive(false);
+            }
+
             montre.transform.DOLocalRotate(new Vector3(0, 360, 0), 1f, RotateMode.LocalAxisAdd);
             montre.transform.DOScale(new Vector3(2.8f, 2.8f, 2.8f), 1f);
             montre.transform.DOLocalMove(new Vector3(-628, -440, -135), 1f).OnComplete(() => MontreScreen.SetActive(true));
@@ -140,7 +147,12 @@ public class MontreScript : MonoBehaviour
         //Animation Travel Effects
         if (SceneManager.GetActiveScene().name != DateText.text)
         {
-           mAnimator.SetTrigger("TravelButton");
+            if (PlayerPrefs.GetInt("FirstPlay") == 1)
+            {
+                PlayerPrefs.SetInt("FirstPlay", 0);
+            }
+
+            mAnimator.SetTrigger("TravelButton");
 
             //ParticleTravel.loop = true;
             //ParticleTravel.Play();
@@ -212,13 +224,15 @@ public class MontreScript : MonoBehaviour
                 DatesList.Reverse();
             }
         }
-
-        engrenage.DestroyCheck();
+        if (engrenage != null)
+        {
+            engrenage.DestroyCheck();
+        }
     }
 
     private void ArrivationAnim()
     {
-        joystick.gameObject.SetActive(false);
+        joystickContainer.gameObject.SetActive(false);
 
         //ParticleTravel.loop = false;
         //ParticleTravel.transform.GetChild(0).GetComponent<ParticleSystem>().loop = false;
@@ -226,7 +240,7 @@ public class MontreScript : MonoBehaviour
         BlackScreen.GetComponent<CanvasGroup>().alpha = 0.9f;
         BlackScreen.GetComponent<CanvasGroup>().DOFade(0f, 1f).OnComplete(() =>
         {
-            joystick.gameObject.SetActive(true);
+            joystickContainer.gameObject.SetActive(true);
         });
     }
 
