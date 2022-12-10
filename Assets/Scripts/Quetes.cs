@@ -11,6 +11,8 @@ public class Quetes : MonoBehaviour
 
     [SerializeField] private string newObjectif;
 
+    PlayerController player;
+
     private void Awake()
     {
         queteButton = FindObjectOfType<QueteButton>();
@@ -18,6 +20,8 @@ public class Quetes : MonoBehaviour
 
     void Start()
     {
+
+        player = FindObjectOfType<PlayerController>();
         StartSceneQuete();
     }
 
@@ -47,16 +51,27 @@ public class Quetes : MonoBehaviour
 
     public void QueteButton()
     {
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance <= 5f)
+        {
+            PlayerPrefs.SetString("Objectif", newObjectif);
+            queteButton.ChangeObjectif();
+            currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
+            PlayerPrefs.SetInt("Quete", currentQueteNumber);
+            SearchQuete();
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public void QueteButtonTuto()
+    {
         PlayerPrefs.SetString("Objectif", newObjectif);
         queteButton.ChangeObjectif();
-
-
-
         currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
         PlayerPrefs.SetInt("Quete", currentQueteNumber);
         SearchQuete();
         transform.GetChild(0).gameObject.SetActive(false);
-        
     }
 
     void Update()
