@@ -18,6 +18,7 @@ public class QueteTuto : MonoBehaviour
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject blackScreen;
     [SerializeField] Sprite blackScreenTuto2;
+    [SerializeField] GameObject colissionBox;
  
     private void OnTriggerEnter(Collider other)
     {
@@ -50,7 +51,8 @@ public class QueteTuto : MonoBehaviour
         QueteTutoContainer.SetActive(false);
         virtualCamera.LookAt = player.transform;
         player.canMove = true;
-        
+        colissionBox.SetActive(false);
+
     }
 
     void Start()

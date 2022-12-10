@@ -211,15 +211,15 @@ public class MontreScript : MonoBehaviour
 
     public void StartAddDate()
     {
-        if (PlayerPrefs.GetInt("Engrenage") >= 1 )
+        if (PlayerPrefs.GetInt("Engrenage") >= 0 )
         {
             DatesList.Add(1603);
             DatesList.Sort();
             DatesList.Reverse();
 
-            if (PlayerPrefs.GetInt("Engrenage") >= 2)
+            if (PlayerPrefs.GetInt("Engrenage") >= 1)
             {
-                DatesList.Add(1783);
+                DatesList.Add(1622);
                 DatesList.Sort();
                 DatesList.Reverse();
             }

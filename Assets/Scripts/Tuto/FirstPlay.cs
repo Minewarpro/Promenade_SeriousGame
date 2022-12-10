@@ -47,6 +47,7 @@ public class FirstPlay : MonoBehaviour
             DaplacementContainer.SetActive(false);
             montreTuto.SetActive(false);
             Destroy(TutoContainer);
+            Destroy(gameObject);
         }
     }
 
