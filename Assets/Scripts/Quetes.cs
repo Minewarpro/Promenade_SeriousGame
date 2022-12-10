@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,13 @@ public class Quetes : MonoBehaviour
     private int currentQueteNumber = 0;
     public List<GameObject> QuetesList;
     QueteButton queteButton;
+    QueteTuto queteTuto;
 
     [SerializeField] private string newObjectif;
+    [SerializeField] private string newText;
+    [SerializeField] private GameObject TextContainer;
+    [SerializeField] private bool needTextApparition;
+    [SerializeField] private GameObject joystickContainer;
 
     PlayerController player;
 
@@ -22,6 +28,7 @@ public class Quetes : MonoBehaviour
     {
 
         player = FindObjectOfType<PlayerController>();
+        queteTuto = FindObjectOfType<QueteTuto>();
         StartSceneQuete();
     }
 
@@ -60,9 +67,39 @@ public class Quetes : MonoBehaviour
             currentQueteNumber = PlayerPrefs.GetInt("Quete") + 1;
             PlayerPrefs.SetInt("Quete", currentQueteNumber);
             SearchQuete();
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);           
+            TextApparition();
         }
     }
+
+    public void TextApparition()
+    {
+        if (needTextApparition)
+        {
+            player.canMove = false;
+            TextContainer.gameObject.SetActive(true);
+            TextContainer.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = newText;
+            joystickContainer.SetActive(false);
+        }
+
+        if (currentQueteNumber == 1)
+        {
+            queteTuto.OnTextApparition();
+        }
+    }
+
+    public void TextClose()
+    {
+        player.canMove = true;
+        TextContainer.gameObject.SetActive(false);
+        joystickContainer.SetActive(true);
+
+        if (currentQueteNumber == 1)
+        {
+            queteTuto.QueteTutoButton();
+        }
+    }
+
 
     public void QueteButtonTuto()
     {
@@ -72,7 +109,10 @@ public class Quetes : MonoBehaviour
         PlayerPrefs.SetInt("Quete", currentQueteNumber);
         SearchQuete();
         transform.GetChild(0).gameObject.SetActive(false);
+        TextApparition();
     }
+
+    
 
     void Update()
     {

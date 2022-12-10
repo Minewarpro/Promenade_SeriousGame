@@ -37,11 +37,12 @@ public class QueteTuto : MonoBehaviour
 
     public void QueteTutoButton()
     {
+        QueteTutoContainer.SetActive(true);
+        player.canMove = false;
         blackScreen.GetComponent<Image>().sprite = blackScreenTuto2;
         arrow.transform.localRotation = new Quaternion(1.49011594e-08f, 5.96046377e-08f, -0.94349438f, 0.331388652f);
         arrow.transform.DOLocalMove(new Vector3(-137, 267, 0), 0.001f).OnComplete(() =>
         arrow.transform.DOLocalMove(new Vector3(-228, 375, 0), 0.5f).SetEase(Ease.InCirc).SetLoops(-1, LoopType.Yoyo));
-        quetes.QueteButtonTuto();
 
         QueteButton.SetActive(true);
     }
@@ -52,6 +53,11 @@ public class QueteTuto : MonoBehaviour
         virtualCamera.LookAt = player.transform;
         player.canMove = true;
         colissionBox.SetActive(false);
+    }
+
+    public void OnTextApparition()
+    {
+        QueteTutoContainer.SetActive(false);
 
     }
 
