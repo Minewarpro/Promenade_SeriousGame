@@ -69,6 +69,7 @@ public class Quetes : MonoBehaviour
             SearchQuete();
             transform.GetChild(0).gameObject.SetActive(false);           
             TextApparition();
+            Debug.Log(PlayerPrefs.GetInt("Quete"));
         }
     }
 

@@ -10,6 +10,7 @@ public class RaycastCamera : MonoBehaviour
     [SerializeField] LayerMask occluder;
     [SerializeField] public List<MeshRenderer> objectHited = new List<MeshRenderer>();
 
+    
 
     private void ThrowRaycast()
     {
@@ -34,6 +35,7 @@ public class RaycastCamera : MonoBehaviour
             {
                 if (ObjectHit.materials[i].color.a == 1)
                 {
+                    MaterialExtensions.ToFadeMode(ObjectHit.materials[i]);
                     ObjectHit.materials[i].DOFade(0.5f, 0.5f);
                 }
             }
@@ -48,6 +50,7 @@ public class RaycastCamera : MonoBehaviour
                 {
                     if (objectHited[i].materials[y].color.a != 1f)
                     {
+                        MaterialExtensions.ToOpaqueMode(objectHited[i].materials[y]);
                         objectHited[i].materials[y].DOFade(1f, 0.5f);
                     }
                 }
