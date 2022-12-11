@@ -13,7 +13,7 @@ public static class MaterialExtensions
         material.DisableKeyword("_ALPHATEST_ON");
         material.DisableKeyword("_ALPHABLEND_ON");
         material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        material.renderQueue = -1;
+        material.renderQueue = 2000;
     }
 
     public static void ToFadeMode(this Material material)
@@ -25,6 +25,6 @@ public static class MaterialExtensions
         material.DisableKeyword("_ALPHATEST_ON");
         material.EnableKeyword("_ALPHABLEND_ON");
         material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+        material.renderQueue = 3000;
     }
 }

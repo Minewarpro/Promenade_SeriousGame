@@ -59,7 +59,6 @@ public class FirstPlay : MonoBehaviour
     public void TutoMontre()
     {
         MontreTutoContainer.SetActive(true);
-        joystickContainer.SetActive(false);
         player.canMove = false;
         arrowTutoMontre.transform.DOLocalMove(new Vector3(154, 249, 0), 0.5f).SetEase(Ease.InCirc).SetLoops(-1, LoopType.Yoyo);
     }
