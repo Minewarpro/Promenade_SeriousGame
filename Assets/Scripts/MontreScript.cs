@@ -222,6 +222,13 @@ public class MontreScript : MonoBehaviour
                 DatesList.Add(1622);
                 DatesList.Sort();
                 DatesList.Reverse();
+
+                if (PlayerPrefs.GetInt("Engrenage") >= 2)
+                {
+                    DatesList.Add(1691);
+                    DatesList.Sort();
+                    DatesList.Reverse();
+                }
             }
         }
         if (engrenage != null)
