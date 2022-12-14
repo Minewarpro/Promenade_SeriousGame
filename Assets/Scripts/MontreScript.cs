@@ -213,22 +213,44 @@ public class MontreScript : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Engrenage") >= 0 )
         {
-            DatesList.Add(1603);
+            DatesList.Add(1622);
             DatesList.Sort();
             DatesList.Reverse();
 
             if (PlayerPrefs.GetInt("Engrenage") >= 1)
             {
-                DatesList.Add(1622);
+                DatesList.Add(1691);
                 DatesList.Sort();
                 DatesList.Reverse();
 
                 if (PlayerPrefs.GetInt("Engrenage") >= 2)
                 {
-                    DatesList.Add(1691);
+                    DatesList.Add(1718);
                     DatesList.Sort();
                     DatesList.Reverse();
+
+                    if (PlayerPrefs.GetInt("Engrenage") >= 3)
+                    {
+                        DatesList.Add(1765);
+                        DatesList.Sort();
+                        DatesList.Reverse();
+
+                        if (PlayerPrefs.GetInt("Engrenage") >= 4)
+                        {
+                            DatesList.Add(1792);
+                            DatesList.Sort();
+                            DatesList.Reverse();
+
+                            if (PlayerPrefs.GetInt("Engrenage") >= 5)
+                            {
+                                DatesList.Add(1828);
+                                DatesList.Sort();
+                                DatesList.Reverse();
+                            }
+                        }
+                    }
                 }
+
             }
         }
         if (engrenage != null)
