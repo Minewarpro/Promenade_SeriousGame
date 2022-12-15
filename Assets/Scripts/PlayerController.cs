@@ -34,6 +34,13 @@ public class PlayerController : MonoBehaviour
 
         mAnimator = transform.GetChild(0).GetComponent<Animator>();
         isWalking = false;
+
+
+        if (ChangeScene.staticChangePos)
+        {
+            transform.position = ChangeScene.spawnPos;
+            ChangeScene.staticChangePos = false;
+        }
     }
 
 
