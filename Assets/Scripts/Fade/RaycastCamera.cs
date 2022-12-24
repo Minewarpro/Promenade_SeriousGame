@@ -8,19 +8,19 @@ public class RaycastCamera : MonoBehaviour
     private PlayerController player;
     //private GameObject ObjectHit;
     [SerializeField] LayerMask occluder;
-    [SerializeField] public List<MeshRenderer> objectHited = new List<MeshRenderer>();
-
-    
+    [SerializeField] public List<MeshRenderer> objectHited = new List<MeshRenderer>();    
 
     private void ThrowRaycast()
     {
-        Vector3 direction = (player.transform.position - Camera.main.transform.position).normalized;
+        Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
+
+        Vector3 direction = (playerPos - Camera.main.transform.position).normalized;
         Ray ray = new Ray(Camera.main.transform.position, direction);
        
         // contient l'objet touché par le raycast
         RaycastHit hit;
         // condition lu si touché par le raycast
-
 
         if (Physics.Raycast(ray, out hit, 100, occluder))
         {
