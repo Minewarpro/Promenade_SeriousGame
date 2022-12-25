@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using FirstGearGames.SmoothCameraShaker;
+using UnityEngine.SceneManagement;
+
 
 public class MarteauGame : MonoBehaviour
 {
@@ -13,9 +15,11 @@ public class MarteauGame : MonoBehaviour
     [SerializeField] GameObject marteau;
     [SerializeField] GameObject bloc;
     [SerializeField] GameObject water;
+    [SerializeField] GameObject BlackScreen;
     [SerializeField] public float arrowSpeed = 1;
 
-    [SerializeField] ShakeData MyShake;
+    [SerializeField] ShakeData MyShakeWin;
+
 
 
     private bool canPlay = true;
@@ -30,14 +34,13 @@ public class MarteauGame : MonoBehaviour
 
     private void ArrowMove()
     {
-        arrows.transform.localPosition = new Vector3(-600, 0, 0);
-        arrows.transform.DOLocalMoveX(600f, arrowSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        arrows.transform.localPosition = new Vector3(-500, 0, 0);
+        arrows.transform.DOLocalMoveX(500f, arrowSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
     private void ResetBar()
     {
-        greenBar.transform.localPosition = new Vector3(Random.Range(-368f,368f), 0, 0);
-        greenBar.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Random.Range(260, 468), 122);
+        greenBar.transform.localPosition = new Vector3(Random.Range(-168f,168f), 0, 0);
     }
 
     private void MarteauIdle()
@@ -48,16 +51,20 @@ public class MarteauGame : MonoBehaviour
     private void MarteauHitLoose()
     {
         marteau.transform.DOKill();
-        marteau.transform.DOLocalRotate(new Vector3(0, 0, 180f), 0.8f).SetEase(Ease.OutBounce).OnComplete( 
-            ()=>         
-            marteau.transform.DOLocalRotate(new Vector3(0, 0, 262f), 1f).OnComplete(()=> { 
-                
-                MarteauIdle(); 
-                ResetBar();
-                ArrowMove();
-                canPlay = true;
+        marteau.transform.DOLocalRotate(new Vector3(0, 0, 180f), 0.8f).SetEase(Ease.OutBounce).OnComplete(
+            () => {
 
-            })
+                marteau.transform.DOLocalRotate(new Vector3(0, 0, 262f), 1f).OnComplete(() =>
+                {
+
+                    MarteauIdle();
+                    ResetBar();
+                    ArrowMove();
+                    canPlay = true;
+
+                });
+
+            }
             );
     } 
         
@@ -73,6 +80,8 @@ public class MarteauGame : MonoBehaviour
 
                     MarteauIdle();
                     ResetBar();
+                    greenBar.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(greenBar.transform.GetComponent<RectTransform>().sizeDelta.x - 100, 122);
+
                     ArrowMove();
                     marteau.transform.DOLocalMoveX(marteau.transform.position.x - 0.35f, 0.5f);
                     canPlay = true;
@@ -88,9 +97,16 @@ public class MarteauGame : MonoBehaviour
                 else
                 {
                     bloc.transform.DOMoveX(bloc.transform.position.x - 2f, 0.5f).SetEase(Ease.OutQuart);
+
+
+                    BlackScreen.GetComponent<CanvasGroup>().DOFade(1f, 0.5f).OnComplete(() =>
+                    {
+                        Debug.Log("test");
+                        SceneManager.LoadScene("1765");
+                    });
                 }
 
-                CameraShakerHandler.Shake(MyShake);
+                CameraShakerHandler.Shake(MyShakeWin);
 
             }
             );

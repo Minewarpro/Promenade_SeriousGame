@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene1765/MiniGameMarteau.unity
     guid: b9f4af5ff5d572b489b42c86d3e43539
+  - enabled: 1
+    path: Assets/Scenes/Scene1765/1765.unity
+    guid: bfd1ae534ba114d439ef0c1349e793d6
   m_configObjects: {}

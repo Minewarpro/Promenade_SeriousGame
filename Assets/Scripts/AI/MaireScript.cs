@@ -21,7 +21,7 @@ public class MaireScript : MonoBehaviour
     {
         if (nbTrajet < trajectoireList.Count)
         {
-            transform.DOMove(trajectoireList[nbTrajet].transform.position, 2f).OnComplete(() => StartWalk());
+            transform.DOMove(trajectoireList[nbTrajet].transform.position, 1f).SetEase(Ease.Linear).OnComplete(() => StartWalk());
             nbTrajet += 1;
         } else
         {
