@@ -22,42 +22,46 @@ public class RaycastCamera : MonoBehaviour
         RaycastHit hit;
         // condition lu si touché par le raycast
 
-        if (Physics.Raycast(ray, out hit, 100, occluder))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            MeshRenderer ObjectHit = hit.transform.gameObject.GetComponent<MeshRenderer>();
+            Debug.Log(occluder.value);
 
-            if(ObjectHit.material.color.a == 1)
+            if (hit.transform.gameObject.layer == 6 )
             {
-                objectHited.Add(ObjectHit);
-            }
+                MeshRenderer ObjectHit = hit.transform.gameObject.GetComponent<MeshRenderer>();
 
-            for (int i = 0; i < ObjectHit.materials.Length; i++)
-            {
-                if (ObjectHit.materials[i].color.a == 1)
+                if (ObjectHit.material.color.a == 1)
                 {
-                    MaterialExtensions.ToFadeMode(ObjectHit.materials[i]);
-                    ObjectHit.materials[i].DOFade(0.5f, 0.5f);
+                    objectHited.Add(ObjectHit);
                 }
-            }
-            Debug.Log(objectHited.Count);
 
-        }
-        else
-        {
-            for (int i = 0; i < objectHited.Count; i++)
-            {
-                for (int y = 0; y < objectHited[i].materials.Length; y++)
+                for (int i = 0; i < ObjectHit.materials.Length; i++)
                 {
-                    if (objectHited[i].materials[y].color.a != 1f)
+                    if (ObjectHit.materials[i].color.a == 1)
                     {
-                        MaterialExtensions.ToOpaqueMode(objectHited[i].materials[y]);
-                        objectHited[i].materials[y].DOFade(1f, 0.5f);
+                        MaterialExtensions.ToFadeMode(ObjectHit.materials[i]);
+                        ObjectHit.materials[i].DOFade(0.5f, 0.5f);
                     }
                 }
-            }
-            objectHited.Clear();
+                Debug.Log(objectHited.Count);
+            } else
+            {
+                for (int i = 0; i < objectHited.Count; i++)
+                {
+                    for (int y = 0; y < objectHited[i].materials.Length; y++)
+                    {
+                        if (objectHited[i].materials[y].color.a != 1f)
+                        {
+                            MaterialExtensions.ToOpaqueMode(objectHited[i].materials[y]);
+                            objectHited[i].materials[y].DOFade(1f, 0.5f);
+                        }
+                    }
+                }
+                objectHited.Clear();
 
+            }
         }
+       
     }
 
     void Start()
