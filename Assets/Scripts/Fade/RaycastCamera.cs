@@ -24,8 +24,6 @@ public class RaycastCamera : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Debug.Log(occluder.value);
-
             if (hit.transform.gameObject.layer == 6 )
             {
                 MeshRenderer ObjectHit = hit.transform.gameObject.GetComponent<MeshRenderer>();
