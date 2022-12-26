@@ -12,6 +12,7 @@ public class ChangeScene : MonoBehaviour
     public static Vector3 spawnPos;
     [SerializeField] public static bool staticChangePos;
     [SerializeField] bool changePos;
+    [SerializeField] bool changePosStart;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +25,11 @@ public class ChangeScene : MonoBehaviour
     
     void Start()
     {
+        if (changePosStart)
+        {
+            spawnPos = spawn;
+            staticChangePos = changePosStart;
+        }
     }
 
 

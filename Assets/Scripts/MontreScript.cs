@@ -113,6 +113,7 @@ public class MontreScript : MonoBehaviour
         {
             if (DatesList[i].ToString() == DateText.text)
             {
+
                 if (i != 0)
                 {
                     DateText.text = DatesList[i-1].ToString();
@@ -134,6 +135,7 @@ public class MontreScript : MonoBehaviour
 
     private void ChangeTime(string newDate)
     {
+
         for (int i = 0; i<4; i++)
         {
             float NumberToGo = float.Parse(newDate[i].ToString());
@@ -219,31 +221,31 @@ public class MontreScript : MonoBehaviour
 
             if (PlayerPrefs.GetInt("Engrenage") >= 1)
             {
-                DatesList.Add(1691);
+                DatesList.Add(1718);
                 DatesList.Sort();
                 DatesList.Reverse();
 
                 if (PlayerPrefs.GetInt("Engrenage") >= 2)
                 {
-                    DatesList.Add(1718);
+                    DatesList.Add(1765);
                     DatesList.Sort();
                     DatesList.Reverse();
 
                     if (PlayerPrefs.GetInt("Engrenage") >= 3)
                     {
-                        DatesList.Add(1765);
+                        DatesList.Add(1792);
                         DatesList.Sort();
                         DatesList.Reverse();
 
                         if (PlayerPrefs.GetInt("Engrenage") >= 4)
                         {
-                            DatesList.Add(1792);
+                            DatesList.Add(1828);
                             DatesList.Sort();
                             DatesList.Reverse();
 
                             if (PlayerPrefs.GetInt("Engrenage") >= 5)
                             {
-                                DatesList.Add(1828);
+                                DatesList.Add(2022);
                                 DatesList.Sort();
                                 DatesList.Reverse();
                             }

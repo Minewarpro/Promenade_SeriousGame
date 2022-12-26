@@ -20,6 +20,8 @@ public class MarteauGame : MonoBehaviour
 
     [SerializeField] ShakeData MyShakeWin;
 
+    public static bool marteauIsWin;
+
 
 
     private bool canPlay = true;
@@ -101,8 +103,8 @@ public class MarteauGame : MonoBehaviour
 
                     BlackScreen.GetComponent<CanvasGroup>().DOFade(1f, 0.5f).OnComplete(() =>
                     {
-                        Debug.Log("test");
                         SceneManager.LoadScene("1765");
+                        marteauIsWin = true;
                     });
                 }
 
