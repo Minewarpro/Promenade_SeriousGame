@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Animator mAnimator;
     private bool isWalking;
 
+    static public bool canRotate = true;
 
     //Cache
     Rigidbody rb;
@@ -82,10 +83,13 @@ public class PlayerController : MonoBehaviour
         moveSpeed += joystick.Direction.magnitude * acceleration * Time.deltaTime;
         moveSpeed = Mathf.Clamp(moveSpeed, 0, speedMax);
 
-
-        // Orientation Joueur
-        aimDirection = moveDirection;
-        transform.forward = Vector3.Lerp(transform.forward, aimDirection, smoothRotation);
+        if (canRotate)
+        {
+            // Orientation Joueur
+            aimDirection = moveDirection;
+            transform.forward = Vector3.Lerp(transform.forward, aimDirection, smoothRotation);
+        }
+        
 
         // Vélocité = direction * vitesse * inclinaison du joystick
         Vector3 truc = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
