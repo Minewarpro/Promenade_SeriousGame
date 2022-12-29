@@ -65,8 +65,12 @@ public class StatueGame : MonoBehaviour
         virtualCamera1.Priority = 10;
         virtualCamera2.Priority = 0;
 
+        GameCanvas.SetActive(false);
         player.transform.rotation = Quaternion.Euler(0, -135f, 0);
-        player.transform.DOMove(new Vector3(67.5f, 0.991936147f, 56.7299995f), 1f).OnComplete(()=> mAnimator.SetTrigger("Idle"));
+        player.transform.DOMove(new Vector3(67.5f, 0.991936147f, 56.7299995f), 1f).OnComplete(()=> {
+            mAnimator.SetTrigger("Idle");
+            PlayerController.canRotate = true;
+        });
         mAnimator.SetTrigger("Run");
     }
 
