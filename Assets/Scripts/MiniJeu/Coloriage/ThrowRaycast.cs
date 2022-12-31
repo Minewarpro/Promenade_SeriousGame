@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThrowRaycast : MonoBehaviour
 {
+
+    [SerializeField] LayerMask layerColoriage;
     void Start()
     {
         
@@ -19,8 +22,10 @@ public class ThrowRaycast : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
-                if (Physics.Raycast(ray, out RaycastHit hit, 100))
+                if (Physics.Raycast(ray, out RaycastHit hit, 100, layerColoriage))
                 {
+                    hit.collider.GetComponentInParent<Image>().color = Color.red;
+
                     Debug.Log(hit.transform.name);
                     Debug.Log("hit");
                 }
