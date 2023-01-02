@@ -24,10 +24,7 @@ public class ThrowRaycast : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100, layerColoriage))
                 {
-                    hit.collider.GetComponentInParent<Image>().color = Color.red;
-
-                    Debug.Log(hit.transform.name);
-                    Debug.Log("hit");
+                    hit.collider.GetComponentInParent<Image>().color = ColorSelection.currentColor;
                 }
             }
         }
