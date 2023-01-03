@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class AI_Basic : MonoBehaviour
 {
+    [SerializeField] GameObject hair;
+    [SerializeField] List<Material> hairs;
+
+
+
+    [SerializeField] GameObject tshirt;
+    [SerializeField] List<Material> tshirts;
+
 
     [SerializeField] public float speed = 5;
     private RaycastHit Hit;
 
+    private Animator mAnimator;
+
     void Start()
     {
         StartCoroutine(RandomWalk());
+
+        mAnimator = transform.GetChild(0).GetComponent<Animator>();
+        mAnimator.SetTrigger("Run");
+
+
+        hair.GetComponent<Renderer>().materials[3].color = hairs[Random.Range(0, hairs.Count)].color;
+        tshirt.GetComponent<MeshRenderer>().materials[0].color = tshirts[Random.Range(0, tshirts.Count)].color;
     }
 
     private IEnumerator RandomWalk()
