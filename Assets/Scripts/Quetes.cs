@@ -45,7 +45,6 @@ public class Quetes : MonoBehaviour
 
     public void SearchQuete()
     {
-        Debug.Log(currentQueteNumber);
         for (int i = 0; i< QuetesList.Count; i++)
         {
             if (currentQueteNumber.ToString() == QuetesList[i].transform.GetChild(0).name)

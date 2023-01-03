@@ -19,8 +19,8 @@ public class ColoriageManager : MonoBehaviour
 
     [SerializeField] LayerMask layerColoriage;
 
-
     private int countGoodColor = 0;
+    private bool needThrowRaycast = false;
 
     private void Check1622()
     {
@@ -174,6 +174,12 @@ public class ColoriageManager : MonoBehaviour
 
     }
 
+    IEnumerator needThrowRay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        needThrowRaycast = false;
+    }
+
     void Start()
     {
         
@@ -187,12 +193,21 @@ public class ColoriageManager : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                StartCoroutine(needThrowRay());
+                needThrowRaycast = true;
+            }
 
-                if (Physics.Raycast(ray, out RaycastHit hit, 100, layerColoriage))
+            if (touch.phase == TouchPhase.Ended)
+            {
+                if (needThrowRaycast)
                 {
-                    hit.collider.GetComponentInParent<Image>().color = ColorSelection.currentColor;
-                    CheckWin();
+                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+                    if (Physics.Raycast(ray, out RaycastHit hit, 100, layerColoriage))
+                    {
+                        hit.collider.GetComponentInParent<Image>().color = ColorSelection.currentColor;
+                        CheckWin();
+                    }
                 }
             }
         }
