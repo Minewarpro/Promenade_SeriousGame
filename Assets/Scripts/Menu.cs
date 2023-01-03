@@ -31,6 +31,7 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("FirstPlay", 1);
         PlayerPrefs.SetInt("Engrenage", 0);
         PlayerPrefs.SetInt("Quete", 0);
+        PlayerPrefs.SetString("EtatStatue", "");
         // ---------------------------
 
 

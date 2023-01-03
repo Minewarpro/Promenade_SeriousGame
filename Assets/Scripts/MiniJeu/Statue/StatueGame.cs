@@ -23,6 +23,8 @@ public class StatueGame : MonoBehaviour
     private bool tutoActive = false;
     private bool isPlaying = false;
 
+    private string etatStatue = "";
+
     float fillBar;
 
     void Start()
@@ -30,6 +32,13 @@ public class StatueGame : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         fillBar = Bar.GetComponent<Image>().fillAmount;
         mainCamera.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0;
+
+        etatStatue = PlayerPrefs.GetString("EtatStatue", etatStatue);
+
+        if (etatStatue == "couchee")
+        {
+            Statue.transform.DORotate(new Vector3(0, 45, -96), 0f);
+        }
     }
 
     public void StartGame()
@@ -61,6 +70,9 @@ public class StatueGame : MonoBehaviour
     private void Win()
     {
         Statue.transform.DORotate(new Vector3(0,45,-96), 3f).SetEase(Ease.InQuint).OnComplete(()=> CanvasUI.SetActive(true));
+        PlayerPrefs.SetString("EtatStatue", "couchee");
+        etatStatue = PlayerPrefs.GetString("EtatStatue", etatStatue);
+
         mainCamera.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 1;
         virtualCamera1.Priority = 10;
         virtualCamera2.Priority = 0;

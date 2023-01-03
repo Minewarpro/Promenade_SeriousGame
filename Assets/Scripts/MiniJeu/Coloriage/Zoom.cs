@@ -22,13 +22,14 @@ public class Zoom : MonoBehaviour
 
     private bool isZooming = false;
     private int zoom = 0;
-    private Vector3 initPosDessin;
+    public static Vector3 initPosDessin;
+    public static Vector3 initScale;
 
     public void ZoomPlus()
     {
         Vector3 scaleDessin = new Vector3(dessin.transform.localScale.x + 0.5f, dessin.transform.localScale.y + 0.5f, dessin.transform.localScale.z + 0.5f);
 
-        if (!isZooming && zoom <2)
+        if (!isZooming && zoom <3)
         {
             dessin.transform.DOScale(scaleDessin, 0.2f).OnComplete(() => isZooming = false);
             dessin.GetComponent<RectTransform>().DOLocalMove(initPosDessin, 0.2f);
@@ -36,7 +37,7 @@ public class Zoom : MonoBehaviour
             zoom += 1;
         }
 
-        if (zoom == 2)
+        if (zoom == 3)
         {
             plus.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         }
@@ -65,6 +66,7 @@ public class Zoom : MonoBehaviour
     private void Start()
     {
         initPosDessin = dessin.GetComponent<RectTransform>().localPosition;
+        initScale = dessin.GetComponent<RectTransform>().localScale;
         minRangeY = - maxRangeY;
     }
 

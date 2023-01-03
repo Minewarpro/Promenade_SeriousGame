@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
-  spawn: {x: 104, y: 3.1, z: 100}
+  spawn: {x: 90, y: 0.958, z: 86}
   changePos: 0
   changePosStart: 1
 --- !u!1 &1459207282

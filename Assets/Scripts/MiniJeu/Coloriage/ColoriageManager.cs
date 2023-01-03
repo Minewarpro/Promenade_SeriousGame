@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ColoriageManager : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class ColoriageManager : MonoBehaviour
     [SerializeField] Color color5;
 
     [SerializeField] LayerMask layerColoriage;
+
+    [SerializeField] GameObject dessin;
+    [SerializeField] GameObject dessinWhite;
+    [SerializeField] GameObject BlackScreen;
+    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject canvasDessin;
+
+    [SerializeField] ParticleSystem startParticle;
 
     private int countGoodColor = 0;
     private bool needThrowRaycast = false;
@@ -46,7 +55,6 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0;
         }
     }
-
     private void Check1718()
     {
         int countGoodAnswer = 0;
@@ -72,7 +80,6 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0;
         }
     }
-
     private void Check1765()
     {
         int countGoodAnswer = 0;
@@ -98,7 +105,6 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0;
         }
     }
-
     private void Check1792()
     {
         int countGoodAnswer = 0;
@@ -124,7 +130,6 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0;
         }
     }
-
     private void Check1828()
     {
         int countGoodAnswer = 0;
@@ -150,7 +155,6 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0;
         }
     }
-
     private void CheckWin()
     {
         Check1622();
@@ -167,11 +171,40 @@ public class ColoriageManager : MonoBehaviour
             countGoodColor = 0; 
         }
     }
-
     private void WinEffect()
     {
         Debug.Log("You Win !");
+        dessinWhite.SetActive(false);
+        
+        if (dessin.GetComponent<RectTransform>().localScale != Zoom.initScale)
+        {
+            dessin.transform.DOScale(Zoom.initScale, 0.2f);
+            dessin.GetComponent<RectTransform>().DOLocalMove(Zoom.initPosDessin, 0.2f).OnComplete(()=> {
 
+                dessin.transform.DOScale(dessin.transform.localScale * 1.2f, 0.4f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCirc).OnComplete(() => {
+                    BlackScreen.GetComponent<CanvasGroup>().DOFade(1, 0.4f).OnComplete(() => {
+                        BlackScreen.GetComponent<CanvasGroup>().DOFade(0, 0.4f);
+                        canvasDessin.gameObject.SetActive(false);
+                        canvas.gameObject.SetActive(true);
+
+                    });
+                });
+                startParticle.Play();
+
+            });
+        }else
+        {
+            dessin.transform.DOScale(dessin.transform.localScale * 1.2f, 0.4f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCirc).OnComplete(()=> {
+                BlackScreen.GetComponent<CanvasGroup>().DOFade(1, 0.4f).OnComplete(() => {
+                    BlackScreen.GetComponent<CanvasGroup>().DOFade(0, 0.4f);
+                    canvasDessin.gameObject.SetActive(false);
+                    canvas.gameObject.SetActive(true);
+
+                });
+            });
+            startParticle.Play();
+
+        }
     }
 
     IEnumerator needThrowRay()
@@ -182,7 +215,8 @@ public class ColoriageManager : MonoBehaviour
 
     void Start()
     {
-        
+
+        //WinEffect();
     }
 
     void Update()
