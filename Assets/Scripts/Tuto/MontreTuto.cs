@@ -14,10 +14,14 @@ public class MontreTuto : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isRecuperate = true;
+        if (other.tag == "Player")
+        {
+            isRecuperate = true;
 
-        particles.SetActive(false);
-        RecuperationEffect();
+            particles.SetActive(false);
+            RecuperationEffect();
+        }
+      
     }
 
     private void RecuperationEffect()
