@@ -7,23 +7,27 @@ public class AI_Basic : MonoBehaviour
     [SerializeField] GameObject hair;
     [SerializeField] List<Material> hairs;
 
-
-
     [SerializeField] GameObject tshirt;
     [SerializeField] List<Material> tshirts;
 
-
-    [SerializeField] public float speed = 5;
+        [SerializeField] public float speed = 5;
     private RaycastHit Hit;
 
     private Animator mAnimator;
 
+    public bool needWalk = true;
     void Start()
     {
-        StartCoroutine(RandomWalk());
-
         mAnimator = transform.GetChild(0).GetComponent<Animator>();
-        mAnimator.SetTrigger("Run");
+
+        if (needWalk)
+        {
+            StartCoroutine(RandomWalk());
+            mAnimator.SetTrigger("Run");
+        }else
+        {
+            mAnimator.SetTrigger("Idle");
+        }
 
 
         hair.GetComponent<Renderer>().materials[3].color = hairs[Random.Range(0, hairs.Count)].color;
@@ -40,11 +44,14 @@ public class AI_Basic : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime); 
-
-        if(Physics.Raycast(transform.position, transform.TransformDirection (Vector3.forward), out Hit, 3))
+        if (needWalk)
         {
-            transform.Rotate(Vector3.up * Random.Range(30, 180));
-        }
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, 3))
+            {
+                transform.Rotate(Vector3.up * Random.Range(30, 180));
+            }
+        }         
     }
 }

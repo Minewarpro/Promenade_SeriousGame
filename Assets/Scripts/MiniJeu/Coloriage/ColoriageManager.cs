@@ -25,6 +25,7 @@ public class ColoriageManager : MonoBehaviour
     [SerializeField] GameObject BlackScreen;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject canvasDessin;
+    [SerializeField] GameObject clouds;
 
     [SerializeField] ParticleSystem startParticle;
 
@@ -186,6 +187,7 @@ public class ColoriageManager : MonoBehaviour
                         BlackScreen.GetComponent<CanvasGroup>().DOFade(0, 0.4f);
                         canvasDessin.gameObject.SetActive(false);
                         canvas.gameObject.SetActive(true);
+                        clouds.gameObject.SetActive(true);
 
                     });
                 });

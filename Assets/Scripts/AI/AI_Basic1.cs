@@ -18,13 +18,22 @@ public class AI_Basic1 : MonoBehaviour
 
     private Animator mAnimator;
 
+    public bool needWalk = true;
+
+
     void Start()
     {
-        StartCoroutine(RandomWalk());
-
         mAnimator = transform.GetChild(0).GetComponent<Animator>();
-        mAnimator.SetTrigger("Run");
 
+        if (needWalk)
+        {
+            StartCoroutine(RandomWalk());
+            mAnimator.SetTrigger("Run");
+        }
+        else
+        {
+            mAnimator.SetTrigger("Idle");
+        }
 
         hair.GetComponent<Renderer>().materials[1].color = hairs[Random.Range(0, hairs.Count)].color;
         tshirt.GetComponent<MeshRenderer>().materials[0].color = tshirts[Random.Range(0, tshirts.Count)].color;
@@ -40,11 +49,14 @@ public class AI_Basic1 : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime); 
-
-        if(Physics.Raycast(transform.position, transform.TransformDirection (Vector3.forward), out Hit, 3))
+        if (needWalk)
         {
-            transform.Rotate(Vector3.up * Random.Range(30, 180));
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, 3))
+            {
+                transform.Rotate(Vector3.up * Random.Range(30, 180));
+            }
         }
     }
 }

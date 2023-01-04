@@ -23,7 +23,7 @@ public class EngrenageScore : MonoBehaviour
 
     private void AffichageScore()
     {
-        GetComponent<Text>().text = score.ToString() + "/10";
+        GetComponent<Text>().text = score.ToString() + "/5";
     }
 
     void Update()

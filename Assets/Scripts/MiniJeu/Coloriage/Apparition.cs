@@ -9,6 +9,7 @@ public class Apparition : MonoBehaviour
     [SerializeField] GameObject DessinCanvas;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject BlackScreen;
+    [SerializeField] GameObject clouds;
 
     public void AppartitionColoriage()
     {
@@ -16,6 +17,7 @@ public class Apparition : MonoBehaviour
         {
             DessinCanvas.SetActive(true);
             canvas.SetActive(false);
+            clouds.SetActive(false);
             BlackScreen.GetComponent<CanvasGroup>().DOFade(0, 0.3f);
         });
     }
