@@ -12,6 +12,7 @@ public class Quetes : MonoBehaviour
     QueteTuto queteTuto;
 
     [SerializeField] private string newObjectif;
+    [SerializeField] private string newObjectif2;
     [SerializeField] private string newText;
     [SerializeField] private GameObject TextContainer;
     [SerializeField] private bool needTextApparition;
@@ -70,6 +71,12 @@ public class Quetes : MonoBehaviour
             TextApparition();
             Debug.Log(PlayerPrefs.GetInt("Quete"));
         }
+    }
+
+    public void NewQuete()
+    {
+        PlayerPrefs.SetString("Objectif", newObjectif2);
+        queteButton.ChangeObjectif();
     }
 
     public void TextApparition()

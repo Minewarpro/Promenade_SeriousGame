@@ -11,6 +11,11 @@ public class Constructeur : MonoBehaviour
     public void PopStatue()
     {
         StartCoroutine(Wait());
+
+        if (PlayerPrefs.GetString("1828Statue") == "Construite")
+        {
+            statue.SetActive(true);
+        }
     }
 
     IEnumerator Wait()
@@ -20,6 +25,7 @@ public class Constructeur : MonoBehaviour
         {
             BlackScreen.GetComponent<CanvasGroup>().DOFade(0, 0.4f);
             statue.SetActive(true);
+            PlayerPrefs.SetString("1828Statue", "Construite");
         });
     }
 
