@@ -5,11 +5,13 @@ using UnityEngine;
 public class NiveauEau : MonoBehaviour
 {
 
+    [SerializeField] Vector3 newPos;
+
     void Start()
     {
-        if (MarteauGame.marteauIsWin)
+        if (PlayerPrefs.GetInt("MarteauWin") == 1)
         {
-            transform.localPosition = new Vector3(0.023f, -1.294f, 0.323f);
+            transform.localPosition = newPos;
         }
     }
 

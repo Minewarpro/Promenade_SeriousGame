@@ -104,7 +104,7 @@ public class MarteauGame : MonoBehaviour
                     BlackScreen.GetComponent<CanvasGroup>().DOFade(1f, 0.5f).OnComplete(() =>
                     {
                         SceneManager.LoadScene("1765");
-                        marteauIsWin = true;
+                        PlayerPrefs.SetInt("MarteauWin", 1);
                     });
                 }
 

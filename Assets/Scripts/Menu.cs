@@ -33,6 +33,7 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("Quete", 0);
         PlayerPrefs.SetString("EtatStatue", "");
         PlayerPrefs.SetString("1828Statue", "");
+        PlayerPrefs.SetInt("MarteauWin", 0);
         // ---------------------------
 
 

@@ -904,7 +904,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81038480}
-  m_LocalRotation: {x: 0.38315493, y: 0, z: 0, w: 0.9236841}
+  m_LocalRotation: {x: 0.3831549, y: 0, z: 0, w: 0.9236841}
   m_LocalPosition: {x: 60.39, y: 18.84, z: 44.329998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45064,7 +45064,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399485434}
-  m_LocalRotation: {x: 0.38315493, y: 0, z: 0, w: 0.9236841}
+  m_LocalRotation: {x: 0.3831549, y: 0, z: 0, w: 0.9236841}
   m_LocalPosition: {x: 60.39, y: 18.84, z: 44.329998}
   m_LocalScale: {x: 1, y: 1, z: 1.9511}
   m_ConstrainProportionsScale: 0
@@ -49683,7 +49683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3655441182704834346, guid: 88b2c419dc21c8247b80155196bbb529, type: 3}
       propertyPath: newText
-      value: C'est tout simplement parfait ! C'est exactement se qu'il me fallait.
+      value: C'est tout simplement parfait ! C'est exactement ce qu'il me fallait.
       objectReference: {fileID: 0}
     - target: {fileID: 3655441182704834346, guid: 88b2c419dc21c8247b80155196bbb529, type: 3}
       propertyPath: newObjectif
