@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float acceleration = 0.1f;
     [SerializeField] float decceleration = 0.1f;
     [SerializeField] float smoothRotation = 0.1f;
+    [SerializeField] ParticleSystem pasParticls;
     public bool canMove;
     private Animator mAnimator;
     private bool isWalking;
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 mAnimator.SetTrigger("Run");
                 Debug.Log("run");
                 isWalking = true;
+                pasParticls.Play();
             }
 
         }
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
             if (isWalking) 
             {
                 mAnimator.SetTrigger("Idle");
+                pasParticls.Stop();
 
 
                 isWalking = false;
