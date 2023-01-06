@@ -18,6 +18,7 @@ public class StatueGame : MonoBehaviour
     [SerializeField] GameObject Statue;
     [SerializeField] Camera mainCamera;
     [SerializeField] Animator mAnimator;
+    [SerializeField] GameObject corde;
 
 
     private bool tutoActive = false;
@@ -50,6 +51,8 @@ public class StatueGame : MonoBehaviour
             PlayerController.canRotate = false;
             player.transform.position = new Vector3(70.76f, 0.94f, 60f);
             player.transform.rotation = Quaternion.Euler(0, -45f, 0);
+            mAnimator.SetTrigger("Tirage");
+            corde.SetActive(true);
             virtualCamera1.Priority = 0;
             virtualCamera2.Priority = 10;
             TutoStatue.SetActive(true);
@@ -70,6 +73,7 @@ public class StatueGame : MonoBehaviour
     private void Win()
     {
         Statue.transform.DORotate(new Vector3(0,45,-96), 3f).SetEase(Ease.InQuint).OnComplete(()=> CanvasUI.SetActive(true));
+        corde.SetActive(false);
         PlayerPrefs.SetString("EtatStatue", "couchee");
         etatStatue = PlayerPrefs.GetString("EtatStatue", etatStatue);
 
